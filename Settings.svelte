@@ -4,11 +4,11 @@
 
 	$: timeToGo = $derivedTimer.timeToGo;
 	// $: minutes = ("0" + Math.floor(timeToGo / 60)).slice(-2);
-	$: minutes = Math.floor(timeToGo / 60).toString();
-	$: seconds = ("0" + (timeToGo % 60)).slice(-2);
+	$: minutes = Math.floor(timeToGo / 60)
+	  .toString()
+	  .padStart(2, "0");
+	$: seconds = (timeToGo % 60).toString().padStart(2, "0");
 	$: timeString = `${minutes}:${seconds}`;
-
-	$: console.log(typeof minutes);
 </script>
 
 
