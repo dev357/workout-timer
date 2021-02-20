@@ -3,7 +3,6 @@
 	import { timer, derivedTimer } from "./timer";
 
 	$: timeToGo = $derivedTimer.timeToGo;
-	// $: minutes = ("0" + Math.floor(timeToGo / 60)).slice(-2);
 	$: minutes = Math.floor(timeToGo / 60)
 	  .toString()
 	  .padStart(2, "0");
@@ -40,7 +39,6 @@
 
 <style>
 	div {
-	  font-family: "Source Code Pro", monospace;
 	  height: 100%;
 	  font-size: 1.5rem;
 	  line-height: 1.5rem;

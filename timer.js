@@ -12,9 +12,10 @@ const ticker = readable(0, (set) => {
   let currentSeconds;
   const update = () => {
     const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
+
+    // only update when the second has changed
     if (elapsedSeconds !== currentSeconds) {
       currentSeconds = elapsedSeconds;
-      // console.log("ticker", currentSeconds);
       set(currentSeconds);
     }
   };

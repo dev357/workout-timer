@@ -24,6 +24,22 @@ function _beep(options) {
   }, beepLength);
 }
 
+// input: [{vol: 1, freq: 1500, type= "square", beepLength=200, pauseLength="200"}]
+export async function beep(beeps) {
+  let prevBeepLength = 0;
+  for (let i = 0; i < beeps.length; i++) {
+    const beep = beeps[i];
+    const timeoutTime = prevBeepLength + (beep.pauseLength || 0);
+    await waitAndRun(() => _beep(beep), timeoutTime);
+    prevBeepLength = beep.beepLength;
+  }
+}
+
+let waitAndRun = (cb, ms = 0) =>
+  new Promise((resolve) => {
+    setTimeout(() => resolve(cb()), ms);
+  });
+
 export const beeps = {
   single: [
     {
@@ -49,19 +65,3 @@ export const beeps = {
     }
   ]
 };
-
-// input: [{vol: 1, freq: 1500, type= "square", beepLength=200, pauseLength="200"}]
-export async function beep(beeps) {
-  let prevBeepLength = 0;
-  for (let i = 0; i < beeps.length; i++) {
-    const beep = beeps[i];
-    const timeoutTime = prevBeepLength + (beep.pauseLength || 0);
-    await waitAndRun(() => _beep(beep), timeoutTime);
-    prevBeepLength = beep.beepLength;
-  }
-}
-
-let waitAndRun = (cb, ms = 0) =>
-  new Promise((resolve) => {
-    setTimeout(() => resolve(cb()), ms);
-  });

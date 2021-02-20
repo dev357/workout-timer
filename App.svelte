@@ -21,7 +21,6 @@
     height: 100%;
     color: white;
     background: #111;
-    font-family: "Source Code Pro", monospace;
     display: grid;
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 1fr;
@@ -29,6 +28,7 @@
   }
 
   :global(body) {
+    font-family: "Source Code Pro", monospace;
     height: 100%;
     margin: 0;
     padding: 0;

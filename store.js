@@ -9,6 +9,7 @@ const storedSettings = JSON.parse(localStorage.getItem("settings")) || {
 
 export const settings = writable(storedSettings);
 
+// Keep localstorage up to date with settings
 settings.subscribe((value) => {
   localStorage.setItem("settings", JSON.stringify(value));
 });
